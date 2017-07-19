@@ -1,6 +1,9 @@
-feature "login process" do
+require 'rails_helper'
+
+feature "new user sign up" do
   context "as an unauthenticated user" do
     let(:user) {build(:user)}
+    let(:existing_user) {create(:user)}
     scenario "navigate to sign in page from root" do
       visit root_path
 
@@ -9,12 +12,12 @@ feature "login process" do
       expect(current_path).to eq(new_user_path)
     end
     scenario "can create an account with all field filled out" do
-      visit root_path
+      visit new_user_path
 
       within ".well" do
-        fill_in :email, with: user.email
-        fill_in :password, with: user.password
-        fill_in :password_confirmation, with: user.password
+        fill_in 'user[email]', with: user.email
+        fill_in 'user[password]', with: user.password
+        fill_in 'user[password_confirmation]', with: user.password
         click_on "Sign Up"
       end
 
@@ -25,19 +28,23 @@ feature "login process" do
       expect(page).to_not have_content "Sign up"
       expect(page).to_not have_content "Login"
     end
-    xscenario "they provide invalid email" do
-      visit login_path
+    scenario "they provide an email that's already taken" do
+      visit new_user_path
 
-      fill_in "session[email]", with: "lollllll@lol.com"
-      fill_in "session[password]", with: user.password
-      click_button "Login"
+      within ".well" do
+        fill_in 'user[email]', with: existing_user.email
+        fill_in 'user[password]', with: user.password
+        fill_in 'user[password_confirmation]', with: user.password
+        click_on "Sign Up"
+      end
 
-      expect(current_path).to eq(login_path)
-      expect(page).to have_content("Invalid Username or Password!")
+      save_and_open_page
 
-      expect(page).to_not have_content "Logout"
-      expect(page).to have_content "Sign up"
-      expect(page).to have_content "Login"
+      expect(page).to have_content("Email account already exists!")
+      expect(current_path).to eq(new_user_path)
+      expect(page).to have_content "Sign Up"
+      expect(page).to have_content "Log in"
+      expect(page).to_not have_content("Logout")
     end
     xscenario "they provide invalid password" do
       visit login_path
