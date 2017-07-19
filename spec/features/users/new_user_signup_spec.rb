@@ -38,55 +38,91 @@ feature "new user sign up" do
         click_on "Sign Up"
       end
 
-      save_and_open_page
-
       expect(page).to have_content("Email account already exists!")
       expect(current_path).to eq(new_user_path)
       expect(page).to have_content "Sign Up"
       expect(page).to have_content "Log in"
       expect(page).to_not have_content("Logout")
     end
-    xscenario "they provide invalid password" do
-      visit login_path
+    scenario "they fail to provide an email address" do
+      visit new_user_path
 
-      fill_in "session[email]", with: user.email
-      fill_in "session[password]", with: "blah"
-      click_on "Login"
+      within ".well" do
+        fill_in 'user[email]', with: ""
+        fill_in 'user[password]', with: user.password
+        fill_in 'user[password_confirmation]', with: user.password
+        click_on "Sign Up"
+      end
 
-      expect(current_path).to eq(login_path)
-      expect(page).to have_content("Invalid Username or Password!")
-
-      expect(page).to_not have_content "Logout"
-      expect(page).to have_content "Sign up"
-      expect(page).to have_content "Login"
+      expect(page).to have_content("Please fill out email field.")
+      expect(current_path).to eq(new_user_path)
+      expect(page).to have_content "Sign Up"
+      expect(page).to have_content "Log in"
+      expect(page).to_not have_content("Logout")
     end
-    xscenario "they provide blank email" do
-      visit login_path
+    scenario "they provide blank password" do
+      visit new_user_path
 
-      fill_in "session[email]", with: ""
-      fill_in "session[password]", with: user.password
-      click_button "Login"
+      within ".well" do
+        fill_in 'user[email]', with: user.email
+        fill_in 'user[password]', with: ""
+        fill_in 'user[password_confirmation]', with: user.password
+        click_on "Sign Up"
+      end
 
-      expect(current_path).to eq(login_path)
-      expect(page).to have_content("Invalid Username or Password!")
-
-      expect(page).to_not have_content "Logout"
-      expect(page).to have_content "Sign up"
-      expect(page).to have_content "Login"
+      expect(page).to have_content("Please fill out password field.")
+      expect(current_path).to eq(new_user_path)
+      expect(page).to have_content "Sign Up"
+      expect(page).to have_content "Log in"
+      expect(page).to_not have_content("Logout")
     end
-    xscenario "they provide blank password" do
-      visit login_path
+    scenario "they provide no password confirmation" do
+      visit new_user_path
 
-      fill_in "session[email]", with: user.email
-      fill_in "session[password]", with: ""
-      click_button "Login"
+      within ".well" do
+        fill_in 'user[email]', with: user.email
+        fill_in 'user[password]', with: user.password
+        fill_in 'user[password_confirmation]', with: ""
+        click_on "Sign Up"
+      end
 
-      expect(current_path).to eq(login_path)
-      expect(page).to have_content("Invalid Username or Password!")
+      expect(page).to have_content("Please fill out password confirmation field.")
+      expect(current_path).to eq(new_user_path)
+      expect(page).to have_content "Sign Up"
+      expect(page).to have_content "Log in"
+      expect(page).to_not have_content("Logout")
+    end
+    scenario "they provide no password OR confirmation" do
+      visit new_user_path
 
-      expect(page).to_not have_content "Logout"
-      expect(page).to have_content "Sign up"
-      expect(page).to have_content "Login"
+      within ".well" do
+        fill_in 'user[email]', with: user.email
+        fill_in 'user[password]', with: ""
+        fill_in 'user[password_confirmation]', with: ""
+        click_on "Sign Up"
+      end
+
+      expect(page).to have_content("Please fill out password field. Please fill out password confirmation field.")
+      expect(current_path).to eq(new_user_path)
+      expect(page).to have_content "Sign Up"
+      expect(page).to have_content "Log in"
+      expect(page).to_not have_content("Logout")
+    end
+    scenario "they provide incorrect password confirmation" do
+      visit new_user_path
+
+      within ".well" do
+        fill_in 'user[email]', with: user.email
+        fill_in 'user[password]', with: user.password
+        fill_in 'user[password_confirmation]', with: "blah blah"
+        click_on "Sign Up"
+      end
+
+      expect(page).to have_content("Password confirmation does not match.")
+      expect(current_path).to eq(new_user_path)
+      expect(page).to have_content "Sign Up"
+      expect(page).to have_content "Log in"
+      expect(page).to_not have_content("Logout")
     end
   end
 end

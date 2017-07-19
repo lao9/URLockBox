@@ -8,14 +8,13 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     error_messages = @user.check_user_errors(check_user_params)
-
     if error_messages.empty?
       @user.save
       session[:user_id] = @user.id
-      flash[:success] = "Welcome!"
+      flash[:notice] = "Welcome!"
       redirect_to links_path
     else
-      flash[:error] = message
+      flash[:error] = error_messages
       redirect_to new_user_path
     end
   end
