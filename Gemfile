@@ -14,8 +14,7 @@ gem 'rails_12factor', group: :production
 gem 'responders'
 gem 'awesome_print'
 gem 'sprockets-es6'
-# gem 'bcrypt', '~> 3.1.7'
-
+gem 'bcrypt', '~> 3.1.7'
 # gem 'unicorn'
 
 # gem 'capistrano-rails', group: :development
@@ -24,16 +23,19 @@ group :development do
 end
 
 group :development, :test do
+  # gem 'better_errors'
   gem 'byebug'
-  gem 'rspec-rails'
   gem 'capybara'
+  gem 'database_cleaner'
+  gem 'factory_girl_rails'
+  gem 'faker'
   gem 'launchy'
   gem 'pry'
+  gem 'rspec-rails'
+  gem 'selenium-webdriver', '~> 2.53.4'
+  gem 'shoulda-matchers'
   gem 'simplecov', :require => false
   gem 'spring'
-  gem 'database_cleaner'
-  gem 'better_errors'
-  gem 'factory_girl_rails'
-  gem 'shoulda-matchers'
-  gem 'selenium-webdriver', '~> 2.53.4'
+  gem 'vcr'
+  gem 'webmock'
 end

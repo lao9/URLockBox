@@ -1,16 +1,15 @@
 # URLockBox
 
-## Final Assessment
-
-The URLockbox is a starter app for the final assessment for module 4 of the backend engineering program at Turing School of Software and Design.
-
-Be sure to get familiar with what is already done, and what is not. No features are complete, but there is some set up done for several features. Use commit history if that helps.
-
 ### Testing your JS with Selenium
 
 The app has the `selenium-webdriver` gem listed in the `Gemfile` and setup in the `rails_helper.rb`
 
 #### Setup
+
+Note to self: use this to make changes:
+$ git add .
+$ git commit -m "Complete setup for M3 assessment."
+$ git push -u upstream master
 
 Everything will be installed with Bundle.
 
