@@ -25,7 +25,7 @@ feature "login process" do
       expect(current_path).to eq(links_path)
       expect(page).to have_content("Logout")
 
-      expect(page).to_not have_content "Sign Up"
+      expect(page).to_not have_content "Sign up"
       expect(page).to_not have_content "Login"
     end
     scenario "they provide invalid email" do
@@ -39,7 +39,7 @@ feature "login process" do
       expect(page).to have_content("Invalid Username or Password!")
 
       expect(page).to_not have_content "Logout"
-      expect(page).to have_content "Sign Up"
+      expect(page).to have_content "Sign up"
       expect(page).to have_content "Login"
     end
     scenario "they provide invalid password" do
@@ -53,7 +53,7 @@ feature "login process" do
       expect(page).to have_content("Invalid Username or Password!")
 
       expect(page).to_not have_content "Logout"
-      expect(page).to have_content "Sign Up"
+      expect(page).to have_content "Sign up"
       expect(page).to have_content "Login"
     end
     scenario "they provide blank email" do
@@ -66,22 +66,22 @@ feature "login process" do
       expect(current_path).to eq(login_path)
       expect(page).to have_content("Invalid Username or Password!")
 
-      expect(page).to_not have_content "Logout"       
-      expect(page).to have_content "Sign Up"
+      expect(page).to_not have_content "Logout"
+      expect(page).to have_content "Sign up"
       expect(page).to have_content "Login"
     end
     scenario "they provide blank password" do
       visit login_path
 
       fill_in "session[email]", with: user.email
-      fill_in "session[password]", with: user.password
+      fill_in "session[password]", with: ""
       click_button "Login"
 
       expect(current_path).to eq(login_path)
       expect(page).to have_content("Invalid Username or Password!")
 
       expect(page).to_not have_content "Logout"
-      expect(page).to have_content "Sign Up"
+      expect(page).to have_content "Sign up"
       expect(page).to have_content "Login"
     end
   end
