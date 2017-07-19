@@ -1,6 +1,8 @@
 FactoryGirl.define do
   factory :user do
-    email "lauren@lauren.com"
+    sequence :email do |n|
+      Faker::Internet.email("lauren#{n}")
+    end
     password "password"
 
     factory :user_with_links do
