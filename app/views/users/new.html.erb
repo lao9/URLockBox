@@ -1,0 +1,27 @@
+<h1>Sign Up</h1>
+
+<div class="well">
+  <%= form_for @user do |f| %>
+
+    <div class="form-group">
+      <%= f.label :email %>
+      <%= f.text_field :email, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control'  %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, class: 'form-control'  %>
+    </div>
+
+    <div class="form-group">
+      <%= f.submit "Sign Up", class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>
+
+<h5>Already have an account? <%= link_to "Log in by clicking here!", login_path %></h5>
