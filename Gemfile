@@ -15,6 +15,10 @@ gem 'responders'
 gem 'awesome_print'
 gem 'sprockets-es6'
 gem 'bcrypt', '~> 3.1.7'
+gem 'less-rails-bootstrap'
+gem 'faraday'
+gem 'figaro'
+gem 'active_model_serializers', '~> 0.10.0'
 # gem 'unicorn'
 
 # gem 'capistrano-rails', group: :development
