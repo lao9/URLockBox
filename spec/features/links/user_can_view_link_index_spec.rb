@@ -20,7 +20,7 @@ feature "view link index" do
 
       link1 = user.links.first
 
-      within "#link-1" do
+      within "#link-#{link1.id}" do
         expect(page).to have_content(link1.title)
         expect(page).to have_link(link1.url)
         expect(page).to have_content("Read?: false")
