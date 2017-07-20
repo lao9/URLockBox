@@ -20,6 +20,7 @@ gem 'figaro'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'twitter-bootstrap-rails'
 # gem 'unicorn'
+gem 'faker'
 
 # gem 'capistrano-rails', group: :development
 group :development do
@@ -32,7 +33,6 @@ group :development, :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'factory_girl_rails'
-  gem 'faker'
   gem 'launchy'
   gem 'pry'
   gem 'rspec-rails'
