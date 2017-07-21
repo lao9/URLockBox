@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-feature "add new link" do
+feature "add new link", :js => true do
   let(:user) {create(:user_with_links)}
   context "as authenticated user with valid params" do
-    xscenario "new link is appended to list of links" do
+    scenario "new link is appended to list of links" do
       allow_any_instance_of(ApplicationController)
         .to receive(:current_user)
         .and_return(user)
