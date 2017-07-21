@@ -2,7 +2,11 @@ class Api::V1::LinksController < ApplicationController
 
   def create
     outcome = Link.add_new_link(link_create_params)
-    render json: {message: outcome[:message]}, status: outcome[:status]
+    if outcome[:status] == 200
+      render partial: 'links/link', locals: {link: outcome[:link]}, layout: false
+    else
+      flash.now[:notice] = outcome[:message]
+    end
   end
 
   def update
@@ -17,7 +21,7 @@ class Api::V1::LinksController < ApplicationController
   private
 
   def link_create_params
-    params.permit(:user_id, :url, :title)
+    params.require(:link).permit(:user_id, :url, :title)
   end
 
   def link_params

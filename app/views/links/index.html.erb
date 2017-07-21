@@ -1,5 +1,24 @@
 <h1>Your URLockBox</h1>
 
+<div class="link-form well">
+  <h3>Add New Link</h3>
+  <%= form_for(current_user.links.new) do |f|  %>
+    <div class="form-group">
+      <%= f.label :url, "URL" %>
+      <%= f.text_field :url, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :title %>
+      <%= f.text_field :title, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.hidden_field :user_id %>
+      <%= f.submit "Add Link" %>
+    </div>
+  <% end %>
+
+</div>
+
 <hr>
 
 <div class="links row">

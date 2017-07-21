@@ -16,8 +16,6 @@ feature "add new link", :js => true do
         click_on "Add Link"
       end
 
-      # some selenium waiting?
-
       within ".links" do
         expect(page).to have_selector(".link", 4)
       end
