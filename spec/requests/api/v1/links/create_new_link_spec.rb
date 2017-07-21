@@ -17,59 +17,58 @@ describe "create a new link" do
     expect(Link.count).to eq(1)
     expect(link1.title).to eq(link.title)
     expect(link1.url).to eq(link.url)
-    binding.pry
     expect(link1.read).to be false
 
     expect(user.links.count).to eq(1)
-    expect(user.links).to eq(link1)
+    expect(user.links.last).to eq(link1)
   end
-  xit "cannot add a new link with invalid url" do
+  it "cannot add a new link with invalid url" do
     post '/api/v1/links', params: {user_id: user.id, url: "turing.io", title: link.title}
 
-    expect(response).to be(422)
+    expect(response.status).to eq(422)
 
-    message = JSON.parse(response.body)
-    expect(message).to eq("Invalid URL!")
+    outcome = JSON.parse(response.body)
+    expect(outcome['message']).to eq("Invalid URL!")
 
     expect(Link.count).to eq(0)
   end
-  xit "cannot add a new link with blank url" do
+  it "cannot add a new link with blank url" do
     post '/api/v1/links', params: {user_id: user.id, url: "", title: link.title}
 
-    expect(response).to be(422)
+    expect(response.status).to eq(422)
 
-    message = JSON.parse(response.body)
-    expect(message).to eq("Missing URL!")
+    outcome = JSON.parse(response.body)
+    expect(outcome['message']).to eq("Invalid URL!\nMissing URL!")
 
     expect(Link.count).to eq(0)
   end
-  xit "cannot add a new link with blank title" do
+  it "cannot add a new link with blank title" do
     post '/api/v1/links', params: {user_id: user.id, url: link.url, title: ""}
 
-    expect(response).to be(422)
+    expect(response.status).to eq(422)
 
-    message = JSON.parse(response.body)
-    expect(message).to eq("Missing Title!")
+    outcome = JSON.parse(response.body)
+    expect(outcome['message']).to eq("Missing Title!")
 
     expect(Link.count).to eq(0)
   end
-  xit "cannot add a new link with invalid url and blank title" do
+  it "cannot add a new link with invalid url and blank title" do
     post '/api/v1/links', params: {user_id: user.id, url: "turing.io", title: ""}
 
-    expect(response).to be(422)
+    expect(response.status).to eq(422)
 
-    message = JSON.parse(response.body)
-    expect(message).to eq("Invalid URL! Missing Title!")
+    outcome = JSON.parse(response.body)
+    expect(outcome['message']).to eq("Invalid URL!\nMissing Title!")
 
     expect(Link.count).to eq(0)
   end
-  xit "cannot add a new link with missing url and title" do
+  it "cannot add a new link with missing url and title" do
     post '/api/v1/links', params: {user_id: user.id, url: "", title: ""}
 
-    expect(response).to be(422)
+    expect(response.status).to eq(422)
 
-    message = JSON.parse(response.body)
-    expect(message).to eq("Missing URL! Missing Title!")
+    outcome = JSON.parse(response.body)
+    expect(outcome['message']).to eq("Invalid URL!\nMissing URL!\nMissing Title!")
 
     expect(Link.count).to eq(0)
   end
