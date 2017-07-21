@@ -16,8 +16,14 @@ function postLink() {
   .done(function(newLinkMarkup) {
     $("#link_url").val("");
     $("#link_title").val("");
-    if (newLinkMarkup) {
-      $(".links").append(newLinkMarkup);
+    if (newLinkMarkup.link_html) {
+      $(".links").append(newLinkMarkup.link_html);
+      $(".container:nth-child(2)").prepend(
+        `<div class='alert alert-success'>
+          <button type='button' class='close' data-dismiss='alert'>x</button>
+          "SUCESSSSSS!!!"
+        </div>
+        `)
     }
   })
 }
