@@ -13,6 +13,10 @@ RSpec.describe Link, type: :model do
     it "responds to read" do
       expect(link).to respond_to(:read)
     end
+    it "should have a default value of read as false" do
+      link = Link.create(title: "Stuff", url: "http://ruby-doc.org/")
+      expect(link.read).to be false
+    end
   end
 
   describe "relationships" do
