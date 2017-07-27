@@ -1,7 +1,8 @@
-<div class="link well" id=<%= "link-#{link.id}" %>>
+<div class="link well <%= "read" if link.read %>" id=<%= "link-#{link.id}" %>>
   <h4>Title: <%= link.title %></h4>
   <p>URL: <%= link_to "#{link.url}", link.url %></p>
-  <p>Read?: <%= "false" unless link.read %></p>
-  <button type="button" name="button" class="btn btn-primary">Mark as Read</button>
+  <p class="read-status">Read?: <%= link.read.to_s %></p>
+  <%= render partial: 'links/unread_button' if link.read %>
+  <%= render partial: 'links/read_button' unless link.read %>
   <%= button_to "Edit", edit_link_path(link.id), {method: :get, class:"btn btn-primary"} %>
 </div>
