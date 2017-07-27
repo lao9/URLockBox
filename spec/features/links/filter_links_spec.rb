@@ -21,14 +21,24 @@ feature "filter links spec", :js => true do
         find('input').set "Ruby"
       end
 
-      expect(page).to have_selector(".link.hidden", count: 2)
-
+      expect(page).to have_selector(".link", count: 1)
+      expect(page).to have_content("Ruby Docs")
     end
-    xscenario "returns case insentitive results" do
+    scenario "returns case insentitive results" do
+      within "#search-filter" do
+        find('input').set "tu"
+      end
 
+      expect(page).to have_selector(".link", count: 2)
+      expect(page).to have_content("Turing BE")
+      expect(page).to have_content("Turing Room")
     end
-    xscenario "returns confirmed search by url" do
+    scenario "returns confirmed search by url" do
+      within "#search-filter" do
+        find('input').set "http"
+      end
 
+      expect(page).to have_selector(".link", count: 3)
     end
   end
   context "by read" do
