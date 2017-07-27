@@ -7,7 +7,7 @@ class Link < ActiveRecord::Base
     message = check_valid_params(params)
     if message.empty?
       create(params)
-      {message: "Link successfully created.", link: Link.last, status: 200}
+      {message: "Successfully added link!", link: Link.last, status: 200}
     else
       {message: message, status: 422}
     end
