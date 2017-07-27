@@ -1,5 +1,5 @@
 <div class="link well <%= "read" if link.read %>" id=<%= "link-#{link.id}" %>>
-  <%= render partial: 'links/spicy' unless link.status == "not" %>
+  <%= render partial: 'links/spicy', locals: {link: link} if link.is_a?(HotLink) %>
   <h4>Title: <%= link.title %></h4>
   <p class="url">URL: <%= link_to "#{link.url}", link.url %></p>
   <p class="read-status">Read?: <%= link.read.to_s %></p>
