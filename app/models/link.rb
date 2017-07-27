@@ -23,4 +23,6 @@ class Link < ActiveRecord::Base
     return message.join("\n")
   end
 
+  
+
 end

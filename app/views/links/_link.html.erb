@@ -3,5 +3,5 @@
   <p>URL: <%= link_to "#{link.url}", link.url %></p>
   <p>Read?: <%= "false" unless link.read %></p>
   <button type="button" name="button" class="btn btn-primary">Mark as Read</button>
-  <button type="button" name="button" class="btn btn-primary">Edit</button>
+  <%= button_to "Edit", edit_link_path(link.id), {method: :get, class:"btn btn-primary"} %>
 </div>

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   root to: "links#index"
 
-  resources :links, only: [:index]
+  resources :links, only: [:index, :edit, :update]
 
   namespace :api do
     namespace :v1 do

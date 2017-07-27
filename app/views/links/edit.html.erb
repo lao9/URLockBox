@@ -1,0 +1,17 @@
+<h1>Edit Link</h1>
+
+<div class="well">
+  <%= form_for @link do |f|  %>
+    <div class="form-group">
+      <%= f.label :url, "URL" %>
+      <%= f.text_field :url, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :title %>
+      <%= f.text_field :title, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.submit "Update Link", class:"btn btn-primary"  %>
+    </div>
+  <% end %>
+</div>
