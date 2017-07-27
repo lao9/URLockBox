@@ -5,19 +5,29 @@ $( document ).ready(function(){
 function markAsRead(e) {
   e.preventDefault();
 
-  var $link = $(this).parents('.link');
-  var linkId = $link.data('link-id');
+  var linkId = $(this).parents().prop('id').split("-")[1];
+  var status = $(this).siblings(".read-status").text().split(":")[1]
 
   $.ajax({
     type: "PATCH",
     url: "/api/v1/links/" + linkId,
-    data: { read: true },
+    data: { read: (status === " false") },
   }).then(updateLinkStatus)
     .fail(displayFailure);
 }
 
 function updateLinkStatus(link) {
-  $(`.link[data-link-id=${link.id}]`).find(".read-status").text(link.read);
+  var new_status = link.read
+  var $link = $(`#link-${link.id} .read-status`)
+  $link.text(`Read?: ${new_status.toString()}`)
+  if (new_status) {
+    $link.parents(".link").addClass("read")
+    $link.siblings(".mark-as-read").text("Mark as Unread")
+  }
+  else {
+    $link.parents(".link").removeClass("read")
+    $link.siblings(".mark-as-read").text("Mark as Read")
+  }
 }
 
 function displayFailure(failureData){
