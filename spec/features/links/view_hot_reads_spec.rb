@@ -7,7 +7,7 @@ feature "top and hot links" do
     conn = Faraday.new(host)
     conn.get("/api/v1/reset")
     user.links.create(title: "Bootstrap Getting Started", url: "http://getbootstrap.com/getting-started/")
-    user.links.create(title: "Turing Room Scheduler", url: "https://turing.skedda.com")
+    user.links.create(title: "Big O Cheat Sheet", url: "http://bigocheatsheet.com/")
 
     allow_any_instance_of(ApplicationController)
       .to receive(:current_user)
