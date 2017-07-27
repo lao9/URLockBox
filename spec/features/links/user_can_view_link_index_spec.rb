@@ -15,7 +15,7 @@ feature "view link index" do
       end
 
       within ".links" do
-        expect(page).to have_selector(".link", 3)
+        expect(page).to have_selector(".link", count: 3)
       end
 
       link1 = user.links.first
