@@ -4,10 +4,9 @@ class Api::V1::LinksController < ApplicationController
     outcome = Link.add_new_link(link_create_params)
     if outcome[:status] == 200
       link_html = render_to_string partial: 'links/link', locals: {link: outcome[:link]}, layout: false
-      render json: {link_html: link_html}
+      render json: {link_html: link_html, message: outcome[:message]}
     else
-      # flash.now[:notice] = outcome[:message]
-      # render json: {message: outcome[:message],
+      render json: {message: outcome[:message]}
     end
   end
 
