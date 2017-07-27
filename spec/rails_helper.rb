@@ -5,7 +5,6 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'capybara/rails'
 require 'capybara/rspec'
-require 'stub_helper'
 
 Capybara.register_driver :selenium do |app|
   Capybara::Selenium::Driver.new(

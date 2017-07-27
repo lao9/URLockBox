@@ -4,7 +4,8 @@ feature "top and hot links" do
   let(:user) {create(:user_with_a_link)}
   before :each do
     host = "https://loliveri-hotreads.herokuapp.com"
-    get "#{host}/api/v1/reset"
+    conn = Faraday.new(host)
+    conn.get("/api/v1/reset")
     user.links.create(title: "Bootstrap Getting Started", url: "http://getbootstrap.com/getting-started/")
     user.links.create(title: "Turing Room Scheduler", url: "https://turing.skedda.com")
 

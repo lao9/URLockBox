@@ -5,6 +5,7 @@ class LinksController < ApplicationController
   def index
     @link = current_user.links.new
     @links = current_user.links.order(:id)
+    @hot_links = HotLinkService.get_links
   end
 
   def edit
