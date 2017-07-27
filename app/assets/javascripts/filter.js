@@ -8,7 +8,7 @@ $( document ).ready(function(){
 function clearFilters() {
   $(".clear-filters").on('click', function(){
     var linkElements = $(".link")
-
+    $("#search-filter input").val("")
     linkElements.each(function(){
       this.style.display = ""
     })
