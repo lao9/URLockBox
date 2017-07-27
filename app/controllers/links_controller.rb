@@ -3,6 +3,7 @@ class LinksController < ApplicationController
   before_action :set_link, only: [:edit, :update]
 
   def index
+    @link = current_user.links.new
     @links = current_user.links.order(:id)
   end
 

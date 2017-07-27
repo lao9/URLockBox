@@ -5,12 +5,8 @@ RSpec.describe User, type: :model do
   let(:user_with_links) {create(:user_with_links)}
 
   describe "attributes" do
-    it "responds to email" do
-      expect(user).to respond_to(:email)
-    end
-    it "responds to password digest" do
-      expect(user).to respond_to(:password_digest)
-    end
+    it { expect(user).to respond_to(:email) }
+    it { expect(user).to respond_to(:password_digest) }
   end
 
   describe "validations" do
@@ -19,9 +15,7 @@ RSpec.describe User, type: :model do
   end
 
   describe "relationships" do
-    it "has many links" do
-      should have_many(:links)
-    end
+    it { should have_many(:links) }
     it "has valid factory with links associations" do
       expect(user_with_links).to respond_to(:links)
       expect(user_with_links.links.count).to eq(3)
