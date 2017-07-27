@@ -42,16 +42,23 @@ feature "filter links spec", :js => true do
     end
   end
   context "by read" do
-    xscenario "user can find only read links" do
+    scenario "user can find only read links" do
+      click_on "Only Read Links"
 
+      expect(page).to have_selector(".link", count: 1)
     end
-    xscenario "user can find only unread links" do
+    scenario "user can find only unread links" do
+      click_on "Only Unread Links"
 
+      expect(page).to have_selector(".link", count: 2)
     end
   end
   context "by any filter" do
-    xscenario "user can clear filters" do
+    scenario "user can clear filters" do
+      click_on "Only Unread Links"
+      click_on "Clear Filters"
 
+      expect(page).to have_selector(".link", count: 3)
     end
   end
 end
