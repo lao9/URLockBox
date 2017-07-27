@@ -1,0 +1,52 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://loliveri-hotreads.herokuapp.com/api/v1/links
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.11.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Cowboy
+      Date:
+      - Thu, 27 Jul 2017 22:16:39 GMT
+      Connection:
+      - keep-alive
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"8c92d208ef8a419f4cbb0af1ac49098d"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - b37dda97-f5dc-43e4-9eff-0f9cb2a6a2a1
+      X-Runtime:
+      - '0.010615'
+      Transfer-Encoding:
+      - chunked
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: UTF-8
+      string: '[{"url":"http://getbootstrap.com/getting-started/"},{"url":"https://www.fabricationgem.org/"},{"url":"https://turing.skedda.com"},{"url":"http://ruby-doc.org/"},{"url":"https://github.com"},{"url":"http://backend.turing.io/module4/"},{"url":"https://drive.google.com"},{"url":"https://calendar.google.com"},{"url":"https://en.todoist.com"},{"url":"https://mail.google.com"}]'
+    http_version: 
+  recorded_at: Thu, 27 Jul 2017 22:16:40 GMT
+recorded_with: VCR 3.0.3
