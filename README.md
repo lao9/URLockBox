@@ -2,7 +2,7 @@
 
 URLockBox is a Rails app that allows users to create and store links!
 
-** insert image here **
+![Alt text](/Desktop/Screen Shot 2017-07-27 at 6.19.34 PM.png?raw=true "Optional Title")
 
 This app is built with a restful API based on the resource 'link' (with the exception of /links, which is replaced by the root).
 
