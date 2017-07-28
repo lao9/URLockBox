@@ -23,6 +23,11 @@ class Link < ActiveRecord::Base
     return message.join("\n")
   end
 
-  
+  def self.hot_links(user_id)
+    where(user_id: user_id).order(:id).map do |raw_link|
+      HotLink.new(raw_link)
+    end
+  end
+
 
 end
