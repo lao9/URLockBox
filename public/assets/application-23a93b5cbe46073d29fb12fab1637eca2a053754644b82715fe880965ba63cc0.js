@@ -14041,11 +14041,28 @@ $(document).ready(function () {
   $("body").on("click", ".mark-as-read", markAsRead);
 });
 
+function postToHotReads(url) {
+  $.ajax({
+    type: "POST",
+    url: "https://loliveri-hotreads.herokuapp.com/api/v1/links",
+    data: { url: url }
+  }).then(function (data) {
+    console.log("Yay!");
+  }).fail(function (data) {
+    console.log("Boo.");
+  });
+}
+
 function markAsRead(e) {
   e.preventDefault();
 
+  var url = $(this).siblings("p.url").text().split(" ")[1];
   var linkId = $(this).parents().prop('id').split("-")[1];
   var status = $(this).siblings(".read-status").text().split(":")[1];
+
+  if (status === " false") {
+    postToHotReads(url);
+  }
 
   $.ajax({
     type: "PATCH",

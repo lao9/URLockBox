@@ -5,6 +5,14 @@ html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:1
   background-color: #d9d9d9;
   text-decoration: line-through;
 }
+
+.top {
+  color: red;
+}
+
+.spicy {
+  color: green;
+}
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
