@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature "top and hot links" do
+feature "top and hot links", :js => :true do
   let(:user) {create(:user_with_a_link)}
   before :each do
     host = "https://loliveri-hotreads.herokuapp.com"
@@ -36,29 +36,5 @@ feature "top and hot links" do
       expect(page).to_not have_content("TOP HOT READ!!")
       expect(page).to_not have_content("SPICY READ!!")
     end
-  end
-  scenario "user can mark new link as red and it will become hot" do
-
-    within "#link-#{link3.id}" do
-      click_on "Mark As Read"
-    end
-
-    within "#link-#{link3.id}" do
-      click_on "Mark As Unread"
-    end
-
-    within "#link-#{link3.id}" do
-      click_on "Mark As Read"
-    end
-
-    visit links_path
-
-    within "#link-#{link1.id}" do
-      within ".spicy" do
-        expect(page).to_not have_content("TOP HOT READ!!")
-        expect(page).to have_content("SPICY READ!!")
-      end
-    end
-
   end
 end

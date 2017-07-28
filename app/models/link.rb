@@ -24,7 +24,7 @@ class Link < ActiveRecord::Base
   end
 
   def self.hot_links(user_id)
-    where(user_id: user_id).map do |raw_link|
+    where(user_id: user_id).order(:id).map do |raw_link|
       HotLink.new(raw_link)
     end
   end
